@@ -55,7 +55,7 @@ func TestValidateCmdLine(t *testing.T) {
 			name:     "arg with injection",
 			cmdLine:  []string{"/bin/echo", "hello; rm -rf /"},
 			expected: nil
-			wantErr:  syscall.EINVAL,,
+			wantErr:  syscall.EINVAL,
 		},
 		{
 			name:     "command with pipe",
@@ -67,7 +67,7 @@ func TestValidateCmdLine(t *testing.T) {
 			name:     "arg with pipe",
 			cmdLine:  []string{"/bin/echo", "hello|cat"},
 			expected: nil,
-			wantErr:  syscall.EINVAL,,
+			wantErr:  syscall.EINVAL,
 		},
 		{
 			name:     "command with backticks",
@@ -79,7 +79,7 @@ func TestValidateCmdLine(t *testing.T) {
 			name:     "arg with backticks",
 			cmdLine:  []string{"/bin/echo", "hello`whoami`"},
 			expected: nil,
-			wantErr:  syscall.EINVAL,,
+			wantErr:  syscall.EINVAL,
 		},
 		{
 			name:     "relative path command",
@@ -103,7 +103,7 @@ func TestValidateCmdLine(t *testing.T) {
 			name:     "arg with parentheses",
 			cmdLine:  []string{"/bin/echo", "test(x)"},
 			expected: nil,
-			wantErr:  syscall.EINVAL,,
+			wantErr:  syscall.EINVAL,
 		},
 		{
 			name:     "command with shell variable",
@@ -115,7 +115,7 @@ func TestValidateCmdLine(t *testing.T) {
 			name:     "arg with shell variable",
 			cmdLine:  []string{"/bin/echo", "test $HOME"},
 			expected: nil,
-			wantErr:  syscall.EINVAL,,
+			wantErr:  syscall.EINVAL,
 		},
 	}
 
