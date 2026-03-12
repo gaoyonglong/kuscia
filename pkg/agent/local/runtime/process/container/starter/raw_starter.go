@@ -59,17 +59,8 @@ func validateCmdLine(cmdLine []string) ([]string, error) {
 				strings.Contains(arg, "$") ||
 				(strings.Contains(arg, "(") && strings.Contains(arg, ")")) ||
 				(strings.Contains(arg, "<") && strings.Contains(arg, ">")) {
-				nlog.Warnf("Potentially unsafe argument detected: %s", arg)
-				// For arguments, we'll sanitize by removing the dangerous characters
-				arg = strings.ReplaceAll(arg, ";", " ")
-				arg = strings.ReplaceAll(arg, "&", "")
-				arg = strings.ReplaceAll(arg, "|", "")
-				arg = strings.ReplaceAll(arg, "`", "")
-				arg = strings.ReplaceAll(arg, "$", " ")
-				arg = strings.ReplaceAll(arg, "(", "")
-				arg = strings.ReplaceAll(arg, ")", "")
-				arg = strings.ReplaceAll(arg, "<", "")
-				arg = strings.ReplaceAll(arg, ">", "")
+				nlog.Warnf("Potentially unsafe argument detected, rejecting: %s", arg)
+				return nil, syscall.EINVAL
 			}
 		}
 		sanitized = append(sanitized, arg)
