@@ -54,7 +54,7 @@ func TestValidateCmdLine(t *testing.T) {
 		{
 			name:     "arg with injection",
 			cmdLine:  []string{"/bin/echo", "hello; rm -rf /"},
-			expected: nil
+			expected: nil,
 			wantErr:  syscall.EINVAL,
 		},
 		{
